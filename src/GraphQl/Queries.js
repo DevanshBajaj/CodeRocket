@@ -51,12 +51,26 @@ export const LEETCODE_QUERY = gql`
       difficulty
       count
     }
+    userContestRanking(username: $username) {
+      attendedContestsCount
+      rating
+      globalRanking
+      totalParticipants
+      topPercentage
+      badge {
+        name
+      }
+    }
     matchedUser(username: $username) {
       contestBadge {
         name
         expired
         hoverText
         icon
+      }
+      userCalendar(year: 2022) {
+        streak
+        totalActiveDays
       }
       problemsSolvedBeatsStats {
         difficulty
