@@ -7,6 +7,7 @@ import { setContext } from "@apollo/client/link/context";
 import Leetcode from "./Components/Leetcode";
 import Codeforces from "./Components/Codeforces";
 import Github from "./Components/Github";
+import Codechef from "./Components/Codechef";
 
 const githubLink = createHttpLink({
   uri: "https://api.github.com/graphql",
@@ -45,6 +46,8 @@ function App() {
         <Leetcode />
         <h1>Codeforces</h1>
         <Codeforces />
+        <h1>CodeChef</h1>
+        <Codechef />
       </ApolloProvider>
     </NextUIProvider>
   );
