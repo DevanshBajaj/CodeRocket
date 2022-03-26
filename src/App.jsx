@@ -1,11 +1,18 @@
-import './App.css'
-import { ApolloProvider, createHttpLink } from '@apollo/client';
-import Github from './Components/Github';
+import "./App.css";
+import { ApolloProvider, createHttpLink } from "@apollo/client";
+import Github from "./Components/Github";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { setContext } from '@apollo/client/link/context';
+import { ApolloLink } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import Leetcode from "./Components/Leetcode";
 
-const httpLink = createHttpLink({
+const githubLink = createHttpLink({
   uri: "https://api.github.com/graphql",
+});
+
+const leetcodeLink = createHttpLink({
+  // uri: "https://leetcode.com/graphql",
+  uri: "https://salty-waters-49462.herokuapp.com/leetcode.com/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -13,25 +20,35 @@ const authLink = setContext((_, { headers }) => {
     headers: {
       ...headers,
       authorization: `Bearer ${import.meta.env.VITE_GITHUB_ACCESS_TOKEN}`,
-    }
-  }
+    },
+  };
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache()
-})
-
-
+  link: ApolloLink.split(
+    (operation) => operation.getContext().clientName === "leetcodeLink",
+    leetcodeLink, // <= apollo will send to this if clientName is "leetcodeLink"
+    authLink.concat(githubLink) // <= otherwise will send to this
+  ),
+  cache: new InMemoryCache(),
+});
 
 function App() {
   return (
     <ApolloProvider client={client}>
       <h1>github</h1>
       <Github />
+      <Leetcode />
     </ApolloProvider>
-
-  )
+  );
 }
 
-export default App
+export default App;
+
+// The body of this function will be executed as a content script inside the
+// current page
+function setPageBackgroundColor() {
+  chrome.storage.sync.get("color", ({ color }) => {
+    document.body.style.backgroundColor = color;
+  });
+}
