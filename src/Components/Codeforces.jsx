@@ -18,8 +18,11 @@ const Codeforces = () => {
     fetch(userStatusApi)
       .then((res) => res.json())
       .then((userStatus) => {
-        setUserStatus(userStatus);
-        console.log(userStatus);
+        const solvedQuestion = userStatus.result.filter(
+          (sol) => sol.verdict === "OK"
+        );
+        setUserStatus(solvedQuestion);
+        console.log(solvedQuestion);
       });
   }, []);
 
