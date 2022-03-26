@@ -51,11 +51,11 @@ function Leetcode() {
             ))}
           </Card>
           <Card>
-            <p>{data.userContestRanking.attendedContestsCount}</p>
-            <p>{data.userContestRanking.globalRanking}</p>
-            <p>{data.userContestRanking.rating.toFixed(2)}</p>
-            <p>{data.userContestRanking.topPercentage}%</p>
-            <p>{data.userContestRanking.totalParticipants}</p>
+            <p>{data.userContestRanking?.attendedContestsCount}</p>
+            <p>{data.userContestRanking?.globalRanking}</p>
+            <p>{data.userContestRanking?.rating.toFixed(2)}</p>
+            <p>{data.userContestRanking?.topPercentage}%</p>
+            <p>{data.userContestRanking?.totalParticipants}</p>
           </Card>
         </div>
       )}
