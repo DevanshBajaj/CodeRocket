@@ -3,6 +3,8 @@ import { useQuery, gql } from "@apollo/client";
 import { useEffect } from "react";
 import styles from "../../styles/Home.module.css";
 import { GITHUB_QUERY } from "../GraphQl/Queries";
+import { Card, Grid } from "@nextui-org/react";
+import moment from 'moment';
 
 function Github() {
   const { loading, error, data } = useQuery(GITHUB_QUERY, {
@@ -11,7 +13,7 @@ function Github() {
     },
   });
 
-  useEffect(() => {}, [data]);
+  useEffect(() => { }, [data]);
 
   if (error) {
     return <div>loading...</div>;
@@ -29,27 +31,32 @@ function Github() {
             <p>{data.user.following.totalCount}</p>
             <p>{data.user.followers.totalCount}</p>
           </div>
-          <div className={styles.grid}>
+          <Grid justify="center">
             {data?.user.repositories?.edges.map((github, idx) => {
+              let updatedDate = moment(github.node.updatedAt).format("MMM Do YY");
+              let createdDate = moment(github.node.createdAt).format("MMM Do YY");
+
               return (
-                <div key={idx} className={styles.card}>
-                  <a href={github.node.url}>
-                    <h2>{github.node.name}</h2>
-                  </a>
-                  <h4>{github.node.updatedAt}</h4>
-                  <h4>{github.node.createdAt}</h4>
-                  <h4>{github.node?.description}</h4>
-                  {github.node.languages.edges.map((lang, i) => (
-                    <div key={i}>
-                      <p style={{ color: `${lang.node.color}` }}>
-                        {lang.node.name}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+                <Grid.Container gap={4} justify="center">
+                  <Card css={{ mw: "80%" }} key={idx} >
+                    <a href={github.node.url}>
+                      <h2>{github.node.name}</h2>
+                    </a>
+                    <h4>{updatedDate}</h4>
+                    <h4>{createdDate}</h4>
+                    <h4>{github.node?.description}</h4>
+                    {github.node.languages.edges.map((lang, i) => (
+                      <div key={i}>
+                        <p style={{ color: `${lang.node.color}` }}>
+                          {lang.node.name}
+                        </p>
+                      </div>
+                    ))}
+                  </Card>
+                </Grid.Container>
               );
             })}
-          </div>
+          </Grid>
         </>
       )}
     </>

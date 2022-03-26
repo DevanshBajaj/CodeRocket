@@ -1,10 +1,11 @@
 import "./App.css";
 import { ApolloProvider, createHttpLink } from "@apollo/client";
-import Github from "./Components/Github";
+import { NextUIProvider } from '@nextui-org/react';
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import Leetcode from "./Components/Leetcode";
+import Github from "./Components/Github";
 
 const githubLink = createHttpLink({
   uri: "https://api.github.com/graphql",
@@ -35,11 +36,13 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <h1>github</h1>
-      <Github />
-      <Leetcode />
-    </ApolloProvider>
+    <NextUIProvider>
+      <ApolloProvider client={client}>
+        <h1>github</h1>
+        <Github />
+        <Leetcode />
+      </ApolloProvider>
+    </NextUIProvider>
   );
 }
 
