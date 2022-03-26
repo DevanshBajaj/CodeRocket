@@ -41,7 +41,9 @@ function App() {
       <ApolloProvider client={client}>
         <h1>github</h1>
         <Github />
+        <h1>Leetcode</h1>
         <Leetcode />
+        <h1>Codeforces</h1>
         <Codeforces />
       </ApolloProvider>
     </NextUIProvider>
