@@ -5,6 +5,7 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import Leetcode from "./Components/Leetcode";
+import Codeforces from "./Components/Codeforces";
 
 const githubLink = createHttpLink({
   uri: "https://api.github.com/graphql",
@@ -39,6 +40,7 @@ function App() {
       <h1>github</h1>
       <Github />
       <Leetcode />
+      <Codeforces />
     </ApolloProvider>
   );
 }
