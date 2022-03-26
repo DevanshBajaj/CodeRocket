@@ -1,10 +1,11 @@
 import "./App.css";
 import { ApolloProvider, createHttpLink } from "@apollo/client";
-import { NextUIProvider } from '@nextui-org/react';
+import { NextUIProvider } from "@nextui-org/react";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import Leetcode from "./Components/Leetcode";
+import Codeforces from "./Components/Codeforces";
 import Github from "./Components/Github";
 
 const githubLink = createHttpLink({
@@ -41,17 +42,10 @@ function App() {
         <h1>github</h1>
         <Github />
         <Leetcode />
+        <Codeforces />
       </ApolloProvider>
     </NextUIProvider>
   );
 }
 
 export default App;
-
-// The body of this function will be executed as a content script inside the
-// current page
-function setPageBackgroundColor() {
-  chrome.storage.sync.get("color", ({ color }) => {
-    document.body.style.backgroundColor = color;
-  });
-}
