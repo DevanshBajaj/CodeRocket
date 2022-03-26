@@ -25,7 +25,6 @@ function Leetcode() {
       ) : (
         <div>
           <Card>
-            {console.log(data)}
             <p>{data.matchedUser.username}</p>
             <p>{data.matchedUser.profile.ranking}</p>
             <p>{data.matchedUser.profile.school}</p>
