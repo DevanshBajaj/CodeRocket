@@ -6,10 +6,10 @@ const Codeforces = () => {
   const [loading, setLoading] = useState(false);
   const [userDetails, setUserDetails] = useState([]);
   const [userStatus, setUserStatus] = useState();
+  const [username, setusername] = useState();
 
   const getCodeforcesUser = () => {
     setLoading(true);
-    let username = "Aniket_Negi";
     const apiUrl = `https://codeforces.com/api/user.info?handles=${username}`;
     const userStatusApi = `https://codeforces.com/api/user.status?handle=${username}`;
     fetch(apiUrl)

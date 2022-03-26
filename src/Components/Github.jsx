@@ -15,7 +15,7 @@ function Github() {
     },
   });
 
-  useEffect(() => {}, [data]);
+  useEffect(() => { }, [data]);
 
   if (loading) {
     return <div>loading...</div>;
