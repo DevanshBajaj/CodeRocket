@@ -15,7 +15,7 @@ function Github() {
     },
   });
 
-  useEffect(() => { }, [data]);
+  useEffect(() => {}, [data]);
 
   if (loading) {
     return <div>loading...</div>;
@@ -24,8 +24,8 @@ function Github() {
     <>
       <input
         type="text"
-        name="username"
-        id="username"
+        name="githubUsername"
+        id="githubUsername"
         onChange={(e) => setusername(e.target.value)}
       />
       <button onClick={() => getGithubUser()}>Search</button>

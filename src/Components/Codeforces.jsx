@@ -36,8 +36,8 @@ const Codeforces = () => {
     <div>
       <input
         type="text"
-        name="username"
-        id="username"
+        name="codeforcesUsername"
+        id="codeforcesUsername"
         onChange={(e) => setusername(e.target.value)}
       />
       <button onClick={() => getCodeforcesUser()}>Search</button>

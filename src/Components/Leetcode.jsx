@@ -23,8 +23,8 @@ function Leetcode() {
     <>
       <input
         type="text"
-        name="username"
-        id="username"
+        name="leetcodeUsername"
+        id="leetcodeUsername"
         onChange={(e) => setusername(e.target.value)}
       />
       <button onClick={() => getLeetcodeUser()}>Search</button>

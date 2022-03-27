@@ -14,7 +14,7 @@ const Codechef = () => {
       .then((res) => res.json())
       .then((user) => {
         setUserInfo(user);
-        console.log(user)
+        console.log(user);
         setLoading(false);
       });
     setLoading(true);
@@ -26,8 +26,8 @@ const Codechef = () => {
     <div>
       <input
         type="text"
-        name="username"
-        id="username"
+        name="codechefUsername"
+        id="codechefUsername"
         onChange={(e) => setusername(e.target.value)}
       />
       <button onClick={() => getCodechefData()}>Search</button>

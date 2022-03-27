@@ -8,6 +8,7 @@ import Leetcode from "./Components/Leetcode";
 import Codeforces from "./Components/Codeforces";
 import Github from "./Components/Github";
 import Codechef from "./Components/Codechef";
+import Login from "./Components/Login/Login";
 
 const githubLink = createHttpLink({
   uri: "https://api.github.com/graphql",
@@ -40,6 +41,7 @@ function App() {
   return (
     <NextUIProvider>
       <ApolloProvider client={client}>
+        <Login />
         <h1>github</h1>
         <Github />
         <h1>Leetcode</h1>
