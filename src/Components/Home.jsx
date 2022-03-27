@@ -37,16 +37,18 @@ export default function Home() {
   console.log(userProfiles);
   return (
     <div>
-      <h1 align="center">Hello, {userProfiles?.fullName}</h1>
+      <div>
+        <h1>Hello, {userProfiles?.fullName}</h1>
+        <Button onClick={handleLogout}>Logout</Button>
+      </div>
       <h1 align="center">Github</h1>
       <Github userHandle={userProfiles?.github} />
-      <h1 align="center">Leetcode</h1>
-      <Leetcode userHandle={userProfiles?.leetcode} />
       <h1 align="center">Codeforces</h1>
       <Codeforces userHandle={userProfiles?.codeforce} />
+      <h1 align="center">Leetcode</h1>
+      <Leetcode userHandle={userProfiles?.leetcode} />
       <h1 align="center">CodeChef</h1>
       <Codechef userHandle={userProfiles?.codechef} />
-      <Button onClick={handleLogout}>Logout</Button>
     </div>
   );
 }
