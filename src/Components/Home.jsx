@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Leetcode from "../Components/Leetcode";
-import Codeforces from "../Components/Codeforces";
-import Github from "../Components/Github";
-import Codechef from "../Components/Codechef";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@nextui-org/react";
+import Profiles from "./Profiles/Profiles";
+import { Button, Container, Grid, Spacer } from "@nextui-org/react";
+import Leaderboard from "./Leaderboard/Leaderboard";
+import Rating from "./Rating/Rating";
 
 export default function Home() {
   let navigate = useNavigate();
-  const [userProfiles, setuserProfiles] = useState(null);
+  const [tab, switchTab] = useState("profiles");
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
 
@@ -26,29 +25,25 @@ export default function Home() {
     navigate("/login");
   };
 
-  const getProfiles = () => {
-    const profiles = JSON.parse(localStorage.getItem("profiles"));
-    setuserProfiles(profiles);
-  };
+  let displayComponent = <Profiles />;
+  if (tab === "profiles") displayComponent = <Profiles />;
+  else if (tab === "leaderboard") displayComponent = <Leaderboard />;
+  else displayComponent = <Rating />;
 
-  useEffect(() => {
-    getProfiles();
-  }, []);
-  console.log(userProfiles);
   return (
     <div>
-      <div>
-        <h1>Hello, {userProfiles?.fullName}</h1>
-        <Button onClick={handleLogout}>Logout</Button>
-      </div>
-      <h1 align="center">Github</h1>
-      <Github userHandle={userProfiles?.github} />
-      <h1 align="center">Codeforces</h1>
-      <Codeforces userHandle={userProfiles?.codeforce} />
-      <h1 align="center">Leetcode</h1>
-      <Leetcode userHandle={userProfiles?.leetcode} />
-      <h1 align="center">CodeChef</h1>
-      <Codechef userHandle={userProfiles?.codechef} />
+      <Container display="flex" justify="center" alignItems="center">
+        <Spacer y={5} />
+        <Button.Group size="xl">
+          <Button onClick={() => switchTab("profiles")}>Your Profiles</Button>
+          <Button onClick={() => switchTab("leaderboard")}>Leaderboard</Button>
+          <Button onClick={() => switchTab("combinedrating")}>
+            Combined Rating
+          </Button>
+        </Button.Group>
+      </Container>
+      {displayComponent}
+      <Button onClick={handleLogout}>Logout</Button>
     </div>
   );
 }

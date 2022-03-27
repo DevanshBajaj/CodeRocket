@@ -1,7 +1,7 @@
 import React from "react";
 import { useLazyQuery, gql } from "@apollo/client";
 import { useState, useEffect } from "react";
-import { GITHUB_QUERY } from "../GraphQl/Queries";
+import { GITHUB_QUERY } from "../../GraphQl/Queries";
 import styles from "./Github.module.css";
 import moment from "moment";
 import {
