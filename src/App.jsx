@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import styles from "../styles/Home.module.css"
 import { ApolloProvider, createHttpLink } from "@apollo/client";
-import { NextUIProvider } from "@nextui-org/react";
+import { Button, NextUIProvider, Text } from "@nextui-org/react";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";

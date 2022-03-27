@@ -5,6 +5,23 @@
   justify-content: center;
   align-content: center;
 }
+.loginGrid {
+  display: grid;
+  margin: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 48px;
+  grid-row-gap: 48px;
+}
+
+.RatingContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 4rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
 
 .profile {
   display: flex;
