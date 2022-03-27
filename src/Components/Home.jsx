@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Profiles from "./Profiles/Profiles";
-import { Button, Container, Grid, Spacer } from "@nextui-org/react";
-import Leaderboard from "./Leaderboard/Leaderboard";
+import { Button, Container, Grid, Spacer, Text } from "@nextui-org/react";
+import Leaderboard from "./Leaderboard/leaderboard";
 import Rating from "./Rating/Rating";
+import styles from "../../styles/Home.module.css"
 
 export default function Home() {
   let navigate = useNavigate();
   const [tab, switchTab] = useState("profiles");
+
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
 
@@ -32,6 +34,10 @@ export default function Home() {
 
   return (
     <div>
+      <div className={styles.navbar}>
+        <Text b size="2rem">CodeRocket 🚀 </Text>
+        <Button onClick={handleLogout}>Logout</Button>
+      </div>
       <Container display="flex" justify="center" alignItems="center">
         <Spacer y={5} />
         <Button.Group size="xl">
@@ -43,7 +49,7 @@ export default function Home() {
         </Button.Group>
       </Container>
       {displayComponent}
-      <Button onClick={handleLogout}>Logout</Button>
+      <div className={styles.footer}>Made with 💝 for 🚢🚀 </div>
     </div>
   );
 }

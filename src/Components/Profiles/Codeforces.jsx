@@ -27,6 +27,7 @@ const Codeforces = ({ userHandle }) => {
         .then((user) => {
           setUserDetails(user.result[0]);
           setLoading(false);
+          localStorage.setItem("codeforcesData", JSON.stringify(user?.result[0].rank))
         });
       setLoading(true);
       fetch(userStatusApi)
@@ -49,7 +50,7 @@ const Codeforces = ({ userHandle }) => {
       <Grid>
         {userDetails && userStatus && (
           <>
-            <Row alignitems="center" justify="center">
+            <Row alignitems="center" justify="center" gap={2}>
               <Text size="1.2rem" b>
                 Username: {userDetails.handle}
               </Text>
@@ -64,8 +65,7 @@ const Codeforces = ({ userHandle }) => {
               </Text>
               <Text size="1.2rem" b>
                 {" "}
-                Last Online:
-                {moment
+                Last Online: {moment
                   .unix(userDetails.lastOnlineTimeSeconds)
                   .format("MMMM Do, YY")}
               </Text>
