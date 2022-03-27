@@ -165,10 +165,10 @@ const Login = ({ title, setEmail, setPassword, handleAction }) => {
       <Container>
         <Row justify="center" align="center">
           {title === "Login"
-            ? "Already have an account?"
-            : "Don't have an account?"}
+            ? "Don't have an account?"
+            : "Already have an account?"}
           <Button light color="primary" auto onClick={switchTab}>
-            {title === "Login" ? "Sign In" : "Sign Up"}
+            {title === "Login" ? "Register" : "Login"}
           </Button>
         </Row>
       </Container>
