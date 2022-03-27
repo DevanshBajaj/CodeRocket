@@ -5,6 +5,7 @@ import { NextUIProvider } from "@nextui-org/react";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import { globalCss } from '@nextui-org/react';
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { app } from "./firebase-config";
 import {
@@ -16,6 +17,10 @@ import Login from "./Components/Login/Login";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Home from "./Components/Home";
+
+const globalStyles = globalCss({
+  body: { margin: "1rem" }
+});
 
 const githubLink = createHttpLink({
   uri: "https://api.github.com/graphql",
@@ -44,7 +49,9 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+
 function App() {
+  globalCss();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();

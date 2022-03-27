@@ -1,10 +1,20 @@
 import React from "react";
 import { useLazyQuery, gql } from "@apollo/client";
 import { useState, useEffect } from "react";
-import styles from "../../styles/Home.module.css";
 import { GITHUB_QUERY } from "../GraphQl/Queries";
-import { Card, Grid } from "@nextui-org/react";
+import styles from "./Github.module.css";
 import moment from "moment";
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  Grid,
+  Input,
+  Row,
+  Text,
+  Textarea,
+} from "@nextui-org/react";
 
 function Github({ userHandle }) {
   const [getGithubUser, { loading, data }] = useLazyQuery(GITHUB_QUERY, {
@@ -21,24 +31,22 @@ function Github({ userHandle }) {
     return <div>loading...</div>;
   }
   return (
-    <>
-      {/* <input
-        type="text"
-        name="githubUsername"
-        id="githubUsername"
-        onChange={(e) => setusername(e.target.value)}
-      />
-      <button onClick={() => getGithubUser()}>Search</button> */}
+    <div className={styles.Container}>
+      <h1>Github</h1>
       {data && (
         <>
-          <div>
+          <div className={styles.profile}>
             <img src={data.user.avatarUrl} height="128px" width="128px"></img>
-            <p>{data.user.name}</p>
-            <p>{data.user.email}</p>
-            <p>{data.user.following.totalCount}</p>
-            <p>{data.user.followers.totalCount}</p>
+            <Text size="1.2rem">Name: {data.user.name}</Text>
+            <Text size="1.2rem">E-mail: {data.user.email}</Text>
+            <Text size="1.2rem">
+              Following: {data.user.following.totalCount}
+            </Text>
+            <Text size="1.2rem">
+              Followers: {data.user.followers.totalCount}
+            </Text>
           </div>
-          <Grid justify="center">
+          <div className={styles.grid}>
             {data?.user.repositories?.edges.map((github, idx) => {
               let updatedDate = moment(github.node.updatedAt).format(
                 "MMM Do YY"
@@ -46,31 +54,40 @@ function Github({ userHandle }) {
               let createdDate = moment(github.node.createdAt).format(
                 "MMM Do YY"
               );
-
               return (
-                <Grid.Container gap={4} justify="center">
-                  <Card css={{ mw: "80%" }} key={idx}>
-                    <a href={github.node.url}>
-                      <h2>{github.node.name}</h2>
-                    </a>
-                    <h4>{updatedDate}</h4>
-                    <h4>{createdDate}</h4>
-                    <h4>{github.node?.description}</h4>
+                <Card key={idx}>
+                  <a href={github.node.url}>
+                    <h2>{github.node.name}</h2>
+                  </a>
+                  <Text size="1.2rem">Last Updated: {updatedDate}</Text>
+                  <Text size="1.2rem">Created At: {createdDate}</Text>
+                  <Text size="1.2rem">
+                    Description:{" "}
+                    {github.node.description ? (
+                      <span>{github.node.description}</span>
+                    ) : (
+                      <span>N/A</span>
+                    )}
+                  </Text>
+                  <div className={styles.skills}>
+                    <Text size="1.2rem">Languages:</Text>
                     {github.node.languages.edges.map((lang, i) => (
-                      <div key={i}>
-                        <p style={{ color: `${lang.node.color}` }}>
-                          {lang.node.name}
-                        </p>
-                      </div>
+                      <Text
+                        size="1.2rem"
+                        key={i}
+                        css={{ color: `${lang.node.color}` }}
+                      >
+                        {lang.node.name}
+                      </Text>
                     ))}
-                  </Card>
-                </Grid.Container>
+                  </div>
+                </Card>
               );
             })}
-          </Grid>
+          </div>
         </>
       )}
-    </>
+    </div>
   );
 }
 

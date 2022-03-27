@@ -1,4 +1,13 @@
-import { Card, Grid } from "@nextui-org/react";
+import {
+  Button,
+  Card,
+  Container,
+  Grid,
+  Col,
+  Input,
+  Row,
+  Text,
+} from "@nextui-org/react";
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 
@@ -15,7 +24,6 @@ const Codechef = ({ userHandle }) => {
       .then((res) => res.json())
       .then((user) => {
         setUserInfo(user);
-        console.log(user);
         setLoading(false);
       });
     setLoading(true);
@@ -28,25 +36,31 @@ const Codechef = ({ userHandle }) => {
   if (loading) return "Loading...";
 
   return (
-    <div>
-      {/* <input
-        type="text"
-        name="codechefUsername"
-        id="codechefUsername"
-        onChange={(e) => setusername(e.target.value)}
-      />
-      <button onClick={() => getCodechefData()}>Search</button> */}
-      {console.log(loading)}
-      {userInfo && (
-        <Card>
-          <p>{userInfo.data.name}</p>
-          <p>{userInfo.data.stars}</p>
-          <p>{userInfo.data?.global_rank}</p>
-          <p>{userInfo.data?.country_rank}</p>
-          <p>{userInfo.data?.rating}</p>
-        </Card>
-      )}
-    </div>
+    <Container display="flex" justify="center" alignItems="center">
+      <h1>CodeChef</h1>
+      <Col
+        css={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          py: "1rem",
+        }}
+      >
+        {userInfo && (
+          <Card
+            css={{ display: "flex", justifyContent: "center", maxW: "30%" }}
+          >
+            <Text size="1.2rem">Name: {userInfo.data.name}</Text>
+            <Text size="1.2rem">Stars: {userInfo.data.stars}</Text>
+            <Text size="1.2rem">Global Rank: {userInfo.data?.global_rank}</Text>
+            <Text size="1.2rem">
+              Country Rank: {userInfo.data?.country_rank}
+            </Text>
+            <Text size="1.2rem">Rating: {userInfo.data?.rating}</Text>
+          </Card>
+        )}
+      </Col>
+    </Container>
   );
 };
 
