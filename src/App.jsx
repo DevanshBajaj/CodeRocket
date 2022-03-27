@@ -9,6 +9,11 @@ import Codeforces from "./Components/Codeforces";
 import Github from "./Components/Github";
 import Codechef from "./Components/Codechef";
 import Login from "./Components/Login/Login";
+import { globalCss } from '@nextui-org/react';
+
+const globalStyles = globalCss({
+  body: { margin: "1rem" }
+});
 
 const githubLink = createHttpLink({
   uri: "https://api.github.com/graphql",
@@ -37,18 +42,16 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+
 function App() {
+  globalStyles();
   return (
     <NextUIProvider>
       <ApolloProvider client={client}>
         <Login />
-        <h1>github</h1>
         <Github />
-        <h1>Leetcode</h1>
         <Leetcode />
-        <h1>Codeforces</h1>
         <Codeforces />
-        <h1>CodeChef</h1>
         <Codechef />
       </ApolloProvider>
     </NextUIProvider>
