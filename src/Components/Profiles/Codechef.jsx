@@ -25,6 +25,7 @@ const Codechef = ({ userHandle }) => {
       .then((user) => {
         setUserInfo(user);
         setLoading(false);
+        localStorage.setItem("codechefData", JSON.stringify(user?.data?.stars));
       });
     setLoading(true);
   };

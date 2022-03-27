@@ -31,6 +31,10 @@ function Leetcode({ userHandle }) {
   if (loading) {
     return <div>Loading...</div>;
   }
+  if (data) {
+    localStorage.setItem("leetcodeData", JSON.stringify({ rating: data?.userContestRanking?.globalRanking, total: data?.userContestRanking?.totalParticipants }))
+  }
+
   return (
     <Container display="flex" justify="center" alignItems="center">
       <Container

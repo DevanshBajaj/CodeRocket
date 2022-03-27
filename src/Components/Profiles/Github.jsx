@@ -30,18 +30,19 @@ function Github({ userHandle }) {
   if (loading) {
     return <div>loading...</div>;
   }
+
   return (
     <div className={styles.Container}>
       {data && (
         <>
           <div className={styles.profile}>
             <img src={data.user.avatarUrl} height="128px" width="128px"></img>
-            <Text size="1.2rem">Name: {data.user.name}</Text>
-            <Text size="1.2rem">E-mail: {data.user.email}</Text>
-            <Text size="1.2rem">
+            <Text b size="1.2rem">Name: {data.user.name}</Text>
+            <Text b size="1.2rem">E-mail: {data.user.email}</Text>
+            <Text b size="1.2rem">
               Following: {data.user.following.totalCount}
             </Text>
-            <Text size="1.2rem">
+            <Text b size="1.2rem">
               Followers: {data.user.followers.totalCount}
             </Text>
           </div>
