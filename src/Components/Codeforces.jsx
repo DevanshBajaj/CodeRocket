@@ -11,7 +11,7 @@ const Codeforces = () => {
   const getCodeforcesUser = () => {
     setLoading(true);
     const apiUrl = `https://codeforces.com/api/user.info?handles=${username}`;
-    const userStatusApi = `https://codeforces.com/api/user.status?handle=${username}`;
+    const userStatusApi = `https://codeforces.com/api/user.status?handle=${username}&count=5`;
     fetch(apiUrl)
       .then((res) => res.json())
       .then((user) => {
