@@ -8,11 +8,10 @@ import {
   Spacer,
   Text,
 } from "@nextui-org/react";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   fullName: "",
-  username: "",
-  password: "",
   phoneNumber: "",
   github: "",
   codeforces: "",
@@ -20,150 +19,156 @@ const initialState = {
   leetcode: "",
 };
 
-const Login = () => {
+const Login = ({ title, setEmail, setPassword, handleAction }) => {
   const [formData, setFormData] = useState(initialState);
-  const [isSignup, setIsSignup] = useState(true);
+  const navigate = useNavigate();
+  const switchTab = () => {
+    if (title === "Login") navigate("/register");
+    else navigate("/login");
+  };
 
   const handleFormData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-  };
-
-  const switchTab = () => {
-    setIsSignup((prevIsSignup) => !prevIsSignup);
+  const handleSubmit = () => {
+    if (title === "Register") {
+      localStorage.setItem("profiles", JSON.stringify(formData));
+      handleAction();
+    } else {
+      handleAction();
+    }
   };
 
   return (
     <Container>
       <Text h2 align="center">
-        {isSignup ? "Sign Up" : "Sign In"}
+        {title === "Register" ? "Register" : "Login"}
       </Text>
       <Spacer y={1} />
-      <form onSubmit={handleSubmit}>
-        {isSignup ? (
-          <Grid.Container gap={4} justify="center">
-            <Grid sm={6} md={4} className="">
-              <Input
-                name="fullName"
-                type="text"
-                placeholder="Full Name"
-                labelPlaceholder="Full Name"
-                onChange={handleFormData}
-                required
-              />
-            </Grid>
-            <Grid sm={6} md={4} className="">
-              <Input
-                name="username"
-                type="text"
-                placeholder="Username"
-                labelPlaceholder="Username"
-                onChange={handleFormData}
-                required
-              />
-            </Grid>
-            <Grid sm={6} md={4} className="">
-              <Input.Password
-                name="password"
-                type="password"
-                placeholder="Password"
-                labelPlaceholder="Password"
-                onChange={handleFormData}
-                required
-              />
-            </Grid>
-            <Grid sm={6} md={4} className="">
-              <Input
-                name="phoneNumber"
-                type="text"
-                placeholder="Phone Number"
-                labelPlaceholder="Phone Number"
-                onChange={handleFormData}
-                required
-              />
-            </Grid>
-            <Grid sm={6} md={4} className="">
-              <Input
-                name="github"
-                type="text"
-                placeholder="Github Username"
-                labelPlaceholder="Github Username"
-                onChange={handleFormData}
-                required
-              />
-            </Grid>
-            <Grid sm={6} md={4} className="">
-              <Input
-                name="codeforces"
-                type="text"
-                placeholder="Codeforces Username"
-                labelPlaceholder="Codeforces Username"
-                onChange={handleFormData}
-                required
-              />
-            </Grid>
-            <Grid sm={6} md={4} className="">
-              <Input
-                name="codechef"
-                type="text"
-                placeholder="Codechef Username"
-                labelPlaceholder="Codechef Username"
-                onChange={handleFormData}
-                required
-              />
-            </Grid>
-            <Grid sm={6} md={4} className="">
-              <Input
-                name="leetcode"
-                type="text"
-                placeholder="Leetcode Username"
-                labelPlaceholder="Leetcode Username"
-                onChange={handleFormData}
-                required
-              />
-            </Grid>
-          </Grid.Container>
-        ) : (
-          <Grid.Container gap={4} justify="center">
-            <Grid sm={6} md={4} className="">
-              <Input
-                name="username"
-                type="text"
-                placeholder="Username"
-                labelPlaceholder="Username"
-                onChange={handleFormData}
-                required
-              />
-            </Grid>
-            <Grid sm={6} md={4} className="">
-              <Input
-                name="password"
-                type="text"
-                placeholder="Password"
-                labelPlaceholder="Password"
-                onChange={handleFormData}
-                required
-              />
-            </Grid>
-          </Grid.Container>
-        )}
-        <Spacer y={1} />
-        <Container className="">
-          <Row justify="center" align="center">
-            <Button type="submit">{isSignup ? "Sign Up" : "Sign In"}</Button>
-          </Row>
-        </Container>
-        <Spacer y={1} />
-      </form>
+      {title === "Register" ? (
+        <Grid.Container gap={4} justify="center">
+          <Grid sm={6} md={4} className="">
+            <Input
+              name="fullName"
+              type="text"
+              placeholder="Full Name"
+              labelPlaceholder="Full Name"
+              onChange={handleFormData}
+              required
+            />
+          </Grid>
+          <Grid sm={6} md={4} className="">
+            <Input
+              name="email"
+              type="email"
+              placeholder="E-Mail"
+              labelPlaceholder="E-Mail"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </Grid>
+          <Grid sm={6} md={4} className="">
+            <Input.Password
+              name="password"
+              type="password"
+              placeholder="Password"
+              labelPlaceholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </Grid>
+          <Grid sm={6} md={4} className="">
+            <Input
+              name="phoneNumber"
+              type="text"
+              placeholder="Phone Number"
+              labelPlaceholder="Phone Number"
+              onChange={handleFormData}
+              required
+            />
+          </Grid>
+          <Grid sm={6} md={4} className="">
+            <Input
+              name="github"
+              type="text"
+              placeholder="Github Username"
+              labelPlaceholder="Github Username"
+              onChange={handleFormData}
+              required
+            />
+          </Grid>
+          <Grid sm={6} md={4} className="">
+            <Input
+              name="codeforces"
+              type="text"
+              placeholder="Codeforces Username"
+              labelPlaceholder="Codeforces Username"
+              onChange={handleFormData}
+              required
+            />
+          </Grid>
+          <Grid sm={6} md={4} className="">
+            <Input
+              name="codechef"
+              type="text"
+              placeholder="Codechef Username"
+              labelPlaceholder="Codechef Username"
+              onChange={handleFormData}
+              required
+            />
+          </Grid>
+          <Grid sm={6} md={4} className="">
+            <Input
+              name="leetcode"
+              type="text"
+              placeholder="Leetcode Username"
+              labelPlaceholder="Leetcode Username"
+              onChange={handleFormData}
+              required
+            />
+          </Grid>
+        </Grid.Container>
+      ) : (
+        <Grid.Container gap={4} justify="center">
+          <Grid sm={6} md={4} className="">
+            <Input
+              name="email"
+              type="email"
+              placeholder="E-Mail"
+              labelPlaceholder="E-Mail"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </Grid>
+          <Grid sm={6} md={4} className="">
+            <Input.Password
+              name="password"
+              type="password"
+              placeholder="Password"
+              labelPlaceholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </Grid>
+        </Grid.Container>
+      )}
+      <Spacer y={1} />
+      <Container className="">
+        <Row justify="center" align="center">
+          <Button onClick={handleSubmit}>
+            {title === "Register" ? "Resgister" : "Login"}
+          </Button>
+        </Row>
+      </Container>
+      <Spacer y={1} />
       <Container>
         <Row justify="center" align="center">
-          {isSignup ? "Already have an account?" : "Don't have an account?"}
+          {title === "Login"
+            ? "Already have an account?"
+            : "Don't have an account?"}
           <Button light color="primary" auto onClick={switchTab}>
-            {isSignup ? "Sign In" : "Sign Up"}
+            {title === "Login" ? "Sign In" : "Sign Up"}
           </Button>
         </Row>
       </Container>

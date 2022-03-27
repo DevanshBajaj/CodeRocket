@@ -2,14 +2,15 @@ import { Card, Grid } from "@nextui-org/react";
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 
-const Codechef = () => {
+const Codechef = ({ userHandle }) => {
   const [loading, setLoading] = useState(false);
   const [userInfo, setUserInfo] = useState();
-  const [username, setusername] = useState();
+
+  const profiles = JSON.parse(localStorage.getItem("profiles"));
 
   const getCodechefData = () => {
     setLoading(true);
-    const apiUrl = `https://codechefscraper.herokuapp.com/${username}`;
+    const apiUrl = `https://codechefscraper.herokuapp.com/user/${profiles.codechef}`;
     fetch(apiUrl)
       .then((res) => res.json())
       .then((user) => {
@@ -20,17 +21,21 @@ const Codechef = () => {
     setLoading(true);
   };
 
+  useEffect(() => {
+    getCodechefData();
+  }, []);
+
   if (loading) return "Loading...";
 
   return (
     <div>
-      <input
+      {/* <input
         type="text"
         name="codechefUsername"
         id="codechefUsername"
         onChange={(e) => setusername(e.target.value)}
       />
-      <button onClick={() => getCodechefData()}>Search</button>
+      <button onClick={() => getCodechefData()}>Search</button> */}
       {console.log(loading)}
       {userInfo && (
         <Card>

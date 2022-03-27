@@ -6,29 +6,29 @@ import { GITHUB_QUERY } from "../GraphQl/Queries";
 import { Card, Grid } from "@nextui-org/react";
 import moment from "moment";
 
-function Github() {
-  const [username, setusername] = useState();
-
+function Github({ userHandle }) {
   const [getGithubUser, { loading, data }] = useLazyQuery(GITHUB_QUERY, {
     variables: {
-      username: username,
+      username: userHandle,
     },
   });
 
-  useEffect(() => {}, [data]);
+  useEffect(() => {
+    getGithubUser();
+  }, [userHandle]);
 
   if (loading) {
     return <div>loading...</div>;
   }
   return (
     <>
-      <input
+      {/* <input
         type="text"
         name="githubUsername"
         id="githubUsername"
         onChange={(e) => setusername(e.target.value)}
       />
-      <button onClick={() => getGithubUser()}>Search</button>
+      <button onClick={() => getGithubUser()}>Search</button> */}
       {data && (
         <>
           <div>

@@ -12,7 +12,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
-import Form from "./Components/LoginForm/Form";
+import Login from "./Components/Login/Login";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Home from "./Components/Home";
@@ -101,7 +101,7 @@ function App() {
           <Route
             path="/login"
             element={
-              <Form
+              <Login
                 title="Login"
                 setEmail={setEmail}
                 setPassword={setPassword}
@@ -112,7 +112,7 @@ function App() {
           <Route
             path="/register"
             element={
-              <Form
+              <Login
                 title="Register"
                 setEmail={setEmail}
                 setPassword={setPassword}

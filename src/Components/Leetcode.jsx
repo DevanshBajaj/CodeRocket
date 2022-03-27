@@ -5,29 +5,31 @@ import styles from "../../styles/Home.module.css";
 import { LEETCODE_QUERY } from "../GraphQl/Queries";
 import { Card } from "@nextui-org/react";
 
-function Leetcode() {
-  const [username, setusername] = useState();
+function Leetcode({ userHandle }) {
+  // const [username, setusername] = useState();
   const [getLeetcodeUser, { loading, data }] = useLazyQuery(LEETCODE_QUERY, {
     variables: {
-      username: username,
+      username: userHandle,
     },
     context: { clientName: "leetcodeLink" },
   });
 
-  useEffect(() => {}, [data]);
+  useEffect(() => {
+    getLeetcodeUser();
+  }, [data]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
   return (
     <>
-      <input
+      {/* <input
         type="text"
         name="leetcodeUsername"
         id="leetcodeUsername"
         onChange={(e) => setusername(e.target.value)}
       />
-      <button onClick={() => getLeetcodeUser()}>Search</button>
+      <button onClick={() => getLeetcodeUser()}>Search</button> */}
       {data && (
         <div>
           <Card>
