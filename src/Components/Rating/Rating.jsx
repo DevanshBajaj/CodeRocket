@@ -5,7 +5,6 @@ import StarRatings from 'react-star-ratings';
 const leetcodeRating = JSON.parse(localStorage.getItem("leetcodeData"));
 const codechefRating = JSON.parse(localStorage.getItem("codechefData"));
 const codeforcesRating = JSON.parse(localStorage.getItem("codeforcesData"));
-console.log(leetcodeRating.total)
 const Rating = () => {
   let codef = 0
 

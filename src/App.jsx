@@ -66,7 +66,6 @@ function App() {
     }
   }, []);
   const handleAction = (id) => {
-    console.log(id);
     const authentication = getAuth();
     if (id === 1) {
       signInWithEmailAndPassword(authentication, email, password)
