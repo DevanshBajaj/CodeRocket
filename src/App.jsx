@@ -1,15 +1,22 @@
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { ApolloProvider, createHttpLink } from "@apollo/client";
 import { NextUIProvider } from "@nextui-org/react";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import Leetcode from "./Components/Leetcode";
-import Codeforces from "./Components/Codeforces";
-import Github from "./Components/Github";
-import Codechef from "./Components/Codechef";
-import Login from "./Components/Login/Login";
 import { globalCss } from '@nextui-org/react';
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { app } from "./firebase-config";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
+import Form from "./Components/LoginForm/Form";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Home from "./Components/Home";
 
 const globalStyles = globalCss({
   body: { margin: "1rem" }
@@ -44,15 +51,85 @@ const client = new ApolloClient({
 
 
 function App() {
-  globalStyles();
+  globalCss();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  useEffect(() => {
+    let authToken = sessionStorage.getItem("Auth Token");
+
+    if (authToken) {
+      navigate("/home");
+    } else {
+      navigate("/login");
+    }
+  }, []);
+  const handleAction = (id) => {
+    console.log(id);
+    const authentication = getAuth();
+    if (id === 1) {
+      signInWithEmailAndPassword(authentication, email, password)
+        .then((response) => {
+          navigate("/home");
+          sessionStorage.setItem(
+            "Auth Token",
+            response._tokenResponse.refreshToken
+          );
+        })
+        .catch((error) => {
+          // if (error.message === "auth/wrong-password") {
+          //   toast.error("Please check the Password");
+          // }
+          // if (error.message === "INVALID_EMAIL") {
+          //   toast.error("Please check the Email");
+          // }
+
+          toast.error(error.message);
+        });
+    }
+    if (id === 2) {
+      createUserWithEmailAndPassword(authentication, email, password)
+        .then((response) => {
+          navigate("/home");
+          sessionStorage.setItem(
+            "Auth Token",
+            response._tokenResponse.refreshToken
+          );
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
+    }
+  };
   return (
     <NextUIProvider>
       <ApolloProvider client={client}>
-        <Login />
-        <Github />
-        <Leetcode />
-        <Codeforces />
-        <Codechef />
+        <Routes>
+          <Route
+            path="/login"
+            element={
+              <Form
+                title="Login"
+                setEmail={setEmail}
+                setPassword={setPassword}
+                handleAction={() => handleAction(1)}
+              />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <Form
+                title="Register"
+                setEmail={setEmail}
+                setPassword={setPassword}
+                handleAction={() => handleAction(2)}
+              />
+            }
+          />
+          <Route path="/home" element={<Home />} />
+        </Routes>
+        <ToastContainer />
       </ApolloProvider>
     </NextUIProvider>
   );
