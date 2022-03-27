@@ -37,7 +37,6 @@ const Codechef = ({ userHandle }) => {
 
   return (
     <Container display="flex" justify="center" alignItems="center">
-      <h1>CodeChef</h1>
       <Col
         css={{
           display: "flex",

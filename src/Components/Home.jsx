@@ -38,13 +38,13 @@ export default function Home() {
   return (
     <div>
       <h1 align="center">Hello, {userProfiles?.fullName}</h1>
-      <h1>Github</h1>
+      <h1 align="center">Github</h1>
       <Github userHandle={userProfiles?.github} />
-      <h1>Leetcode</h1>
+      <h1 align="center">Leetcode</h1>
       <Leetcode userHandle={userProfiles?.leetcode} />
-      <h1>Codeforces</h1>
+      <h1 align="center">Codeforces</h1>
       <Codeforces userHandle={userProfiles?.codeforce} />
-      <h1>CodeChef</h1>
+      <h1 align="center">CodeChef</h1>
       <Codechef userHandle={userProfiles?.codechef} />
       <Button onClick={handleLogout}>Logout</Button>
     </div>

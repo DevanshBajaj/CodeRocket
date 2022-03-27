@@ -32,7 +32,6 @@ function Github({ userHandle }) {
   }
   return (
     <div className={styles.Container}>
-      <h1>Github</h1>
       {data && (
         <>
           <div className={styles.profile}>

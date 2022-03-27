@@ -33,7 +33,6 @@ function Leetcode({ userHandle }) {
   }
   return (
     <Container display="flex" justify="center" alignItems="center">
-      <h1>Leetcode</h1>
       <Container
         css={{
           display: "flex",

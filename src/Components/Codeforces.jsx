@@ -46,7 +46,6 @@ const Codeforces = ({ userHandle }) => {
 
   return (
     <Container display="flex" justify="center" alignItems="center">
-      <h1>Codeforces</h1>
       <Grid gap={2} css={{ width: "100%" }}>
         {userDetails && userStatus && (
           <>
