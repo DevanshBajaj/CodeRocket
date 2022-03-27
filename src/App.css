@@ -13,6 +13,14 @@
   }
 }
 
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

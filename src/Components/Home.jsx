@@ -44,7 +44,7 @@ export default function Home() {
           <Button onClick={() => switchTab("profiles")}>Your Profiles</Button>
           <Button onClick={() => switchTab("leaderboard")}>Leaderboard</Button>
           <Button onClick={() => switchTab("combinedrating")}>
-            Combined Rating
+            Rocket Rating
           </Button>
         </Button.Group>
       </Container>
