@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Profiles from "./Profiles/Profiles";
 import { Button, Container, Grid, Spacer, Text } from "@nextui-org/react";
-import Leaderboard from "./Leaderboard/leaderboard";
+import Leaderboard from "./Leaderboard/Leaderboard";
 import Rating from "./Rating/Rating";
 import styles from "../../styles/Home.module.css"
 
