@@ -1,8 +1,8 @@
 import React from "react";
-import { useLazyQuery, gql } from "@apollo/client";
-import { useState, useEffect } from "react";
-import styles from "../../styles/Home.module.css";
-import { LEETCODE_QUERY } from "../GraphQl/Queries";
+import { useLazyQuery } from "@apollo/client";
+import { useEffect } from "react";
+import styles from "../../../styles/Home.module.css";
+import { LEETCODE_QUERY } from "../../GraphQl/Queries";
 import {
   Button,
   Card,
