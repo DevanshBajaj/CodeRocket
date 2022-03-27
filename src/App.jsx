@@ -53,6 +53,8 @@ function App() {
 
     if (authToken) {
       navigate("/home");
+    } else {
+      navigate("/login");
     }
   }, []);
   const handleAction = (id) => {
