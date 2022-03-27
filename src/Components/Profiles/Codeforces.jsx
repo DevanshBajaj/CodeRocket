@@ -46,10 +46,10 @@ const Codeforces = ({ userHandle }) => {
 
   return (
     <Container display="flex" justify="center" alignItems="center">
-      <Grid gap={2} css={{ width: "100%" }}>
+      <Grid>
         {userDetails && userStatus && (
           <>
-            <Row gap={2} alignitems="center" justify="center">
+            <Row alignitems="center" justify="center">
               <Text size="1.2rem" b>
                 Username: {userDetails.handle}
               </Text>
@@ -79,8 +79,8 @@ const Codeforces = ({ userHandle }) => {
                 py: "2rem",
               }}
             >
-              <Text h3>Status</Text>
-              <Grid.Container gap={4} wrap="wrap">
+              <Text h3 css={{ textAlign: "center" }}>Status</Text>
+              <Grid.Container gap={6} wrap="wrap">
                 {userStatus?.map((status, idx) => {
                   return (
                     <Grid gap={2} xs={6} key={idx}>
@@ -112,7 +112,7 @@ const Codeforces = ({ userHandle }) => {
           </>
         )}
       </Grid>
-    </Container>
+    </Container >
   );
 };
 

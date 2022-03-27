@@ -46,7 +46,7 @@ function Leetcode({ userHandle }) {
       >
         {data && (
           <>
-            <Card css={{ py: "2rem" }}>
+            <Card css={{ py: "2rem", maxW: "50%" }}>
               <Text size="1.2rem">Username: {data.matchedUser.username}</Text>
               <Text size="1.2rem">
                 Ranking: {data.matchedUser.profile.ranking}
@@ -61,7 +61,7 @@ function Leetcode({ userHandle }) {
                 Skills:{data.matchedUser.profile.skillTags.join(", ")}
               </Text>
             </Card>
-            <Card css={{ maxW: "100%" }}>
+            <Card css={{ maxW: "50%" }}>
               <Text h3 css={{ p: "1rem" }}>
                 Submit Stats
               </Text>
@@ -75,7 +75,7 @@ function Leetcode({ userHandle }) {
                 )
               )}
             </Card>
-            <Card>
+            <Card css={{ maxW: "50%" }}>
               <Text h3 css={{ p: "1rem" }}>
                 Contest Ranking
               </Text>

@@ -40,14 +40,15 @@ const Codechef = ({ userHandle }) => {
       <Col
         css={{
           display: "flex",
+          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          py: "1rem",
+          py: "2rem",
         }}
       >
         {userInfo && (
           <Card
-            css={{ display: "flex", justifyContent: "center", maxW: "30%" }}
+            css={{ display: "flex", justifyContent: "center", maxW: "40%" }}
           >
             <Text size="1.2rem">Name: {userInfo.data.name}</Text>
             <Text size="1.2rem">Stars: {userInfo.data.stars}</Text>
