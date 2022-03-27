@@ -154,7 +154,7 @@ const Login = () => {
         <Spacer y={1} />
         <Container className="">
           <Row justify="center" align="center">
-            <Button>{isSignup ? "Sign Up" : "Sign In"}</Button>
+            <Button type="submit">{isSignup ? "Sign Up" : "Sign In"}</Button>
           </Row>
         </Container>
         <Spacer y={1} />
